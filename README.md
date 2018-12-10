@@ -1,24 +1,23 @@
-# README
+# React w/ Rails Boilerplate
+A Rails w/ React Boilerplate to help you get started building faster. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
+* Ruby on Rails 
+* React
+* React Router
+* SASS Capable
+* Faker gem
 
-Things you may want to cover:
+#Install
+Navigate to `home` directory
+* run `bundle` to install rails dependencies
 
-* Ruby version
+Navigate to `client` folder
+* run `yarn` to install client dependencies
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
