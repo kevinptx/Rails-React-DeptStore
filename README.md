@@ -7,6 +7,7 @@ A Rails w/ React Boilerplate to help you get started building faster.
 * React Router
 * SASS Capable
 * Faker gem
+* Pry gem
 
 #Install
 Navigate to `home` directory
