@@ -9,7 +9,7 @@ A Rails w/ React Boilerplate to help you get started building faster.
 * Faker gem
 * Pry gem
 
-#Install
+# Install
 Navigate to `home` directory
 * run `bundle` to install rails dependencies
 
