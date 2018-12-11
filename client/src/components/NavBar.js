@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 
-const Navbar = () => (
+const NavBar = () => (
   <Menu>
     <NavLink exact activeStyle={styles.active} to="/">
       <Menu.Item>Home</Menu.Item>
@@ -25,4 +25,4 @@ const styles = {
   }
 };
 
-export default Navbar;
+export default NavBar;
