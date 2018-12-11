@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :departments
+  namespace :api do 
+    resources :departments do
+      resources :items
+    end
+  end
 end

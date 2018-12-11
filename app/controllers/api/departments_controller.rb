@@ -1,4 +1,4 @@
-class DepartmentsController < ApplicationController
+class Api::DepartmentsController < ApplicationController
   before_action :set_department, only: [:show, :update, :destroy]
 
   def index

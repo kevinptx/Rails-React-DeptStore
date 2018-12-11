@@ -1,4 +1,4 @@
-class ItemsController < ApplicationController
+class Api::ItemsController < ApplicationController
   before_action :set_item, only: [:show, :update, :destroy]
   before_action :set_department
 
