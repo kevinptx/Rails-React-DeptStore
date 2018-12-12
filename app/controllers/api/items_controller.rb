@@ -3,7 +3,8 @@ class Api::ItemsController < ApplicationController
   before_action :set_department
 
   def index
-    item = @department.items.all
+    item = @department.items
+    render json: item
   end
 
   def show

@@ -6,20 +6,16 @@ import { Link } from "react-router-dom";
 class Department extends React.Component {
   state = {
     items: [],
-    department: ""
+    department: {}
   };
 
-  // handleDelete = (id) => {
-  //   axios.delete(`/api/items/${id}`)
-  //   .then(res => {
-  //     const {items} = this.state;
-  //     this.setState({ items: items.filter( m => m.id !== id)})
-  //   })
-  // }
   componentDidMount() {
     const { id } = this.props.match.params;
+    axios.get(`/api/departments/${id}`).then(res => {
+      this.setState({ department: res.data });
+    });
     axios
-      .get(`/api/departments/${id}/products`)
+      .get(`/api/departments/${id}/items`)
       .then(res => {
         this.setState({ items: res.data });
       })
@@ -28,15 +24,17 @@ class Department extends React.Component {
       });
   }
 
-  getDepartment = () => {
-    const { id } = this.props.match.params;
-    axios.get(`/api/departments/${id}`).then(res => {
-      this.setState({ department: res.data.name });
-    });
-  };
+  // handleDelete = (id) => {
+  //   axios.delete(`/api/items/${id}`)
+  //   .then(res => {
+  //     const {items} = this.state;
+  //     this.setState({ items: items.filter( m => m.id !== id)})
+  //   })
+  // }
 
   renderItems = () => {
-    return this.state.items.map(item => (
+    const { items } = this.state;
+    return items.map(item => (
       <Grid.Column>
         <Segment textAlign="center">
           <Segment
@@ -72,10 +70,12 @@ class Department extends React.Component {
       </Grid.Column>
     ));
   };
+
   render() {
     const { id } = this.props.match.params;
     return (
       <div>
+        <h1>{this.state.department.name}</h1>;
         <Link to={`/departments/${id}/items/new`}>
           <Button style={{ marginBottom: "30px" }} color="blue">
             <Icon name="plus" />

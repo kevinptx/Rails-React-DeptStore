@@ -7,7 +7,7 @@ import About from "./components/About";
 import Departments from "./components/Departments";
 // import DepartmentForm from "./components/DepartmentForm";
 import Department from "./components/Department";
-// import ItemForm from "./components/ItemForm";
+import ItemForm from "./components/ItemForm";
 
 const App = () => (
   <Fragment>
