@@ -2,7 +2,7 @@ import React from "react";
 import { Segment, Header, Button, Icon, Grid } from "semantic-ui-react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { HeaderText } from "./styles/Appstyles";
 class Department extends React.Component {
   state = {
     items: [],
@@ -48,6 +48,7 @@ class Department extends React.Component {
       });
   };
 
+  //Another way to list(render) Items
   // listItems = () => {
   //   const { id } = this.props.match.params;
   //   return this.state.items.map(i => (
@@ -102,7 +103,7 @@ class Department extends React.Component {
     const { id } = this.props.match.params;
     return (
       <div>
-        <h1>{this.state.department.name}</h1>;
+        <HeaderText fSize="large">{this.state.department.name}</HeaderText>;
         <Link to={`/departments/${id}/items/new`}>
           <Button style={{ marginBottom: "30px" }} color="blue">
             <Icon name="plus" />
