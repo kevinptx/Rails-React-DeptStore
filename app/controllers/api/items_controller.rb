@@ -12,7 +12,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def create
-    item = @department.item.new(item_params)
+    item = @department.items.new(item_params)
     if item.save
       render json: item
     else
@@ -22,9 +22,9 @@ class Api::ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      render json: item
+      render json: @item
     else
-      render json: item.errors, status: 422
+      render json: @item.errors, status: 422
     end
   end
 
@@ -35,7 +35,7 @@ class Api::ItemsController < ApplicationController
   private
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = @department.items.find(params[:id])
   end
 
   def set_department
@@ -43,6 +43,6 @@ class Api::ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:name, :description, :price)
+    params.require(:item).permit(:name, :description, :price, :image_url)
   end
 end
