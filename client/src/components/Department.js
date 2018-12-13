@@ -96,7 +96,7 @@ class Department extends React.Component {
           </Button>
         </Link>
 
-        <Grid columns={3} centered>
+        <Grid columns={4} centered>
           {this.renderItems()}
         </Grid>
       </div>
