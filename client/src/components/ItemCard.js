@@ -1,18 +1,18 @@
 import React from "react";
 import { StyledGrid } from "./styles/Appstyles";
-
-import {
-  Image,
-  Button,
-  Icon,
-  Grid,
-  Segment,
-  Header,
-  Card
-} from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { Image, Button, Icon, Segment, Card } from "semantic-ui-react";
+import { HeaderText } from "./styles/Appstyles";
 
-const ItemCard = ({ id, name, description, price, image_url, remove }) => (
+const ItemCard = ({
+  id,
+  name,
+  description,
+  price,
+  image_url,
+  ItemRemove,
+  department_id
+}) => (
   <StyledGrid>
     <Card>
       <Segment textAlign="center">
@@ -25,26 +25,25 @@ const ItemCard = ({ id, name, description, price, image_url, remove }) => (
           }}
         />
         <Image src={image_url} />
-        <Link to={`/items/${id}`}>
-          <Header>{name}</Header>
-          <Segment basic>${description}</Segment>
-        </Link>
-        <Button
-          icon
-          size="mini"
-          color="orange"
-          onClick={() => this.handleEdit(id)}
-        >
-          <Icon name="pencil" />
-        </Button>
-        <Button
-          icon
-          size="mini"
-          color="red"
-          onClick={() => this.handleDelete(id)}
-        >
-          <Icon name="trash" />
-        </Button>
+        <Segment basic>${price}</Segment>
+        <HeaderText fontSize="large">{name}</HeaderText>
+        <Segment basic>{description}</Segment>
+
+        <div className="ui three buttons">
+          <Link to={`/departments/${department_id}/items/${id}/`}>
+            <Button icon size="mini" color="blue">
+              Show
+            </Button>
+          </Link>
+          <Link to={`/departments/${department_id}/items/${id}/edit`}>
+            <Button icon size="mini" color="orange">
+              <Icon name="pencil" />
+            </Button>
+          </Link>
+          <Button icon size="mini" color="red" onClick={() => ItemRemove(id)}>
+            <Icon name="trash" />
+          </Button>
+        </div>
       </Segment>
     </Card>
   </StyledGrid>

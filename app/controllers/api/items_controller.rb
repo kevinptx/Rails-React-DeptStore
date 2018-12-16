@@ -1,10 +1,11 @@
 class Api::ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :update, :destroy]
   before_action :set_department
+  before_action :set_item, only: [:show, :update, :destroy]
 
   def index
     item = @department.items
     render json: item
+    # same as: render json: @department.items
   end
 
   def show
@@ -21,6 +22,7 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
+    
     if @item.update(item_params)
       render json: @item
     else
@@ -34,12 +36,13 @@ class Api::ItemsController < ApplicationController
 
   private
 
-  def set_item
-    @item = @department.items.find(params[:id])
-  end
-
   def set_department
     @department = Department.find(params[:department_id])
+  end
+
+  def set_item
+    
+    @item = @department.items.find(params[:id])
   end
 
   def item_params

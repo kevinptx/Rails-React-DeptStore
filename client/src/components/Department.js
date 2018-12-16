@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ItemCard from "./ItemCard";
-import { Segment, Header, Button, Icon, Grid, Image } from "semantic-ui-react";
+import { Button, Icon, Grid } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { HeaderText } from "./styles/Appstyles";
 class Department extends React.Component {
@@ -15,7 +15,6 @@ class Department extends React.Component {
     axios.get(`/api/departments/${id}`).then(res => {
       this.setState({ department: res.data });
     });
-
     axios
       .get(`/api/departments/${id}/items`)
       .then(res => {
@@ -26,43 +25,33 @@ class Department extends React.Component {
       });
   }
 
-  handleDelete = () => {
+  handleDepartmentDelete = () => {
     const { id } = this.props.match.params;
     const remove = window.confirm(
       "Are you sure you want to delete this department?"
     );
     if (remove)
-      axios.delete(`/api/departments/${id}`).then(res => {
-        this.props.history.push("/departments");
-      });
-  };
-
-  toggleEdit = () => this.setState({ editing: !this.state.editing });
-
-  handleEdit = id => {
-    axios
-      .get(`/api/items/${id}`)
-      .then(res => {
-        const { items } = this.state;
-        this.setState({ departments: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+      axios
+        .delete(`/api/departments/${id}`)
+        .then(res => this.props.history.push("/departments"));
   };
 
   renderItems = () => {
-    const { id, name } = this.props.match.params;
     return this.state.items.map(i => (
-      <ItemCard key={i.id} {...i} remove={this.removeItem} />
+      <ItemCard
+        key={i.id}
+        {...i}
+        department_id={this.state.department.id}
+        ItemRemove={this.removeItem}
+      />
     ));
   };
 
   removeItem = id => {
     const remove = window.confirm("Are you sure you want to delete this item?");
-    const deptId = this.props.match.params.id;
+    const dId = this.props.match.params.id;
     if (remove)
-      axios.delete(`/api/departments/${deptId}/items/${id}`).then(res => {
+      axios.delete(`/api/departments/${dId}/items/${id}`).then(res => {
         const items = this.state.items.filter(i => {
           if (i.id !== id) return i;
         });
@@ -77,13 +66,19 @@ class Department extends React.Component {
     return (
       <div>
         <HeaderText fSize="large">{name}</HeaderText>
-        <Button icon color="blue">
-          <Icon name="pencil" />
-          Edit
-        </Button>
-        <Button icon color="red" onClick={() => this.handleDelete(id)}>
+        <Link to={`/departments/${id}/edit`}>
+          <Button icon color="blue">
+            <Icon name="pencil" />
+            Edit
+          </Button>
+        </Link>
+        <Button
+          icon
+          color="red"
+          onClick={() => this.handleDepartmentDelete(id)}
+        >
           <Icon name="trash" />
-          Delete
+          Delete Department
         </Button>
         <br />
         <HeaderText fSize="small">{description}</HeaderText>
@@ -92,10 +87,11 @@ class Department extends React.Component {
         <Link to={`/departments/${id}/items/new`}>
           <Button style={{ marginBottom: "30px" }} color="blue">
             <Icon name="plus" />
-            New Item
+            Add Item
           </Button>
         </Link>
-
+        <br />
+        <br />
         <Grid columns={4} centered>
           {this.renderItems()}
         </Grid>
