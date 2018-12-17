@@ -24,7 +24,7 @@ class Reviews extends React.Component {
       axios
         .delete(`/api/items/${this.props.itemId}/reviews/${id}`)
         .then(res => {
-          const reviews = this.state.review.filter(r => {
+          const reviews = this.state.reviews.filter(r => {
             if (r.id !== id) return r;
           });
           this.setState({ reviews });
@@ -39,6 +39,7 @@ class Reviews extends React.Component {
             <Rating
               rating={r.rating}
               defaultRating={5}
+              maxRating={5}
               disabled
               icon="star"
               size="massive"

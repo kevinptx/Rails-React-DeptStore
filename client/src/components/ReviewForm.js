@@ -2,7 +2,7 @@ import React from "react";
 import { Form, Rating } from "semantic-ui-react";
 import axios from "axios";
 
-class ReviewForm extends React.component {
+class ReviewForm extends React.Component {
   state = { title: "", body: "", author: "", rating: 0 };
 
   handleChange = ({ target: { name, value } }) => {
