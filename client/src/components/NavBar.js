@@ -18,10 +18,8 @@ const NavBar = () => (
 
 const styles = {
   active: {
-    textDecoration: "none",
-    fontWeight: "bold",
-    fontFamily: "none",
-    color: "black"
+    color: "orange",
+    fontWeight: "bold"
   }
 };
 
