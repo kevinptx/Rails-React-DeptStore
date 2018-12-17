@@ -22,7 +22,6 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    
     if @item.update(item_params)
       render json: @item
     else
@@ -41,7 +40,6 @@ class Api::ItemsController < ApplicationController
   end
 
   def set_item
-    
     @item = @department.items.find(params[:id])
   end
 

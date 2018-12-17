@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_12_16_200555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.text "image_url", default: "https://robohash.org/velitsedfacere.png?size=300x300&set=set1"
+    t.text "image_url", default: "https://robohash.org/estmagniut.png?size=300x300&set=set1"
     t.index ["department_id"], name: "index_items_on_department_id"
   end
 
